@@ -203,12 +203,14 @@ void serial_readwrite_task(void *pvParameters)
 
 void new_task2(void *pvParameters)
 {
-    while(1);
+    while(1) {
+    }
 }
 
 void new_task1(void *pvParameters)
 {
-    while(1);
+    while(1) {
+    }
 }
 
 int main()
