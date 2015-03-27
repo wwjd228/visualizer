@@ -19,6 +19,7 @@ mutexes = {}
 all_queues = {}
 binsems = {}
 queues = {}
+switchlog = open('switchcost', 'w')
 
 for line in lines :
 	line = line.strip()
@@ -40,7 +41,7 @@ for line in lines :
 		
 		out_time = (float(tick) + (float(tick_reload) - float(out_minitick)) / float(tick_reload)) / 100 * 1000;
 		in_time  = (float(tick) + (float(tick_reload) - float(in_minitick))  / float(tick_reload)) / 100 * 1000;
-		
+		switchlog.write('the cost of context switch is "%f" \n'%( in_time - out_time))
 		event = {}
 		event['type'] = 'task out'
 		event['task'] = out_task
@@ -246,4 +247,6 @@ for id in tasks :
 		grasp.write('plot %f jobCompleted job%s.1\n' %
 					(events[-1]['time'], id))
 
+
 grasp.close()
+switchlog.close()
